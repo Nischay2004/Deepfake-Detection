@@ -56,14 +56,21 @@ Research shows that different CNN architectures excel at different aspects:
 3. Temporal Analysis
    
 Video-based deepfake detection requires analyzing temporal inconsistencies:
+
 -LSTM Networks: Capture long-term dependencies in video sequences
 
 -RNN Variants: Process frame sequences to identify temporal artifacts
 
 -CNN+LSTM Combinations: Extract spatial features with CNNs, then analyze temporal patterns with LSTMs
 
-6. Ensemble Methods
+<br>
+
+4. Ensemble Methods
+   
 Research consistently shows that ensemble approaches achieve the highest accuracy:
+
 Model Diversity: Combining different architectures (CNN, LSTM, Transformers)
+
 Voting Strategies: Majority voting, weighted averaging, stacking
+
 Cross-Dataset Generalization: Improved performance on unseen data
