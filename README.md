@@ -69,8 +69,8 @@ Video-based deepfake detection requires analyzing temporal inconsistencies:
    
 Research consistently shows that ensemble approaches achieve the highest accuracy:
 
-Model Diversity: Combining different architectures (CNN, LSTM, Transformers)
+-Model Diversity: Combining different architectures (CNN, LSTM, Transformers)
 
-Voting Strategies: Majority voting, weighted averaging, stacking
+-Voting Strategies: Majority voting, weighted averaging, stacking
 
-Cross-Dataset Generalization: Improved performance on unseen data
+-Cross-Dataset Generalization: Improved performance on unseen data
