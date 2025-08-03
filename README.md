@@ -1,6 +1,5 @@
 # Deepfake-Detection
 
-Based on extensive research of current state-of-the-art methods and best practices, I've created a complete guide for implementing a modern deepfake detection system. This system combines multiple advanced techniques for maximum accuracy and robustness.
 
 <img width="2400" height="1600" alt="3f9cab98" src="https://github.com/user-attachments/assets/ce4a2a76-6e95-4b67-98c0-2da5714f6aa4" />
 
