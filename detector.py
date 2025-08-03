@@ -32,8 +32,8 @@ class DeepfakeDetector:
             loss='binary_crossentropy',
             metrics=['accuracy']
         )
-        # feature extractor for LSTM
-        self.cnn_feature_extractor = Model(inputs=base.input, outputs=base.get_layer('features').output)
+        # feature extractor for LSTM - use the features layer from the main model
+        self.cnn_feature_extractor = Model(inputs=base.input, outputs=self.cnn_model.get_layer('features').output)
 
     def train_cnn_model(self, X_train, y_train, X_val, y_val, epochs=10, batch_size=8):
         print("▶️ Training CNN...")
@@ -65,11 +65,20 @@ class DeepfakeDetector:
 
     def train_lstm_model(self, X_train, y_train, X_val, y_val, epochs=10, batch_size=4):
         print("▶️ Training LSTM...")
-        feature_dim = X_train.shape[-1]
+        
+        # Extract features using the trained CNN
+        print("Extracting features for LSTM training...")
+        X_train_features = self.extract_features_from_sequences(X_train)
+        X_val_features = self.extract_features_from_sequences(X_val)
+        
+        feature_dim = X_train_features.shape[-1]
         self.build_lstm_model(feature_dim=feature_dim)
+        
+        print(f"LSTM input shape: X_train_features={X_train_features.shape}")
+        
         history = self.lstm_model.fit(
-            X_train, y_train,
-            validation_data=(X_val, y_val),
+            X_train_features, y_train,
+            validation_data=(X_val_features, y_val),
             epochs=epochs,
             batch_size=batch_size
         )
