@@ -1,75 +1,120 @@
-# Deepfake-Detection
+# 🎭 Deepfake Detection System
 
+A video-based deepfake detection system that combines **face detection**, **CNN-based feature extraction**, **temporal modeling**, and **ensemble learning**. This project also features a lightweight **Streamlit app** for quick testing of the model on new video data.
 
-<img width="2400" height="1600" alt="3f9cab98" src="https://github.com/user-attachments/assets/ce4a2a76-6e95-4b67-98c0-2da5714f6aa4" />
+![Architecture](https://github.com/user-attachments/assets/ce4a2a76-6e95-4b67-98c0-2da5714f6aa4)
 
-<br>
+---
 
-**System Architecture Overview**
+## 🧠 System Overview
 
-The deepfake detection pipeline consists of several integrated components working together:
+This deepfake detection pipeline involves the following steps:
 
--Video Input & Frame Extraction - Processing input videos and extracting individual frames
+1. **🎞️ Frame Extraction**: Extract video frames from input videos.
+2. **🧍‍♂️ Face Detection**: Use MTCNN or MediaPipe to detect and crop faces.
+3. **🔍 Feature Extraction**: Use CNN architectures (e.g., Xception) for spatial analysis.
+4. **⏳ Temporal Modeling**: Use RNNs or LSTMs to detect motion inconsistencies across frames.
+5. **✅ Classification**: Real or Fake prediction.
+6. **📈 Ensemble Learning**: Combine outputs from multiple models for more robust results.
 
--Face Detection & Preprocessing - Using MTCNN or MediaPipe to detect and align faces
+---
 
--Feature Extraction - CNN models (XceptionNet, EfficientNet, ResNet) extract visual features
+## 📁 Project Structure
 
--Temporal Analysis - LSTM/RNN networks analyze sequences for temporal inconsistencies
+```bash
+Deepfake_model/
+│
+├── dataset/              # Contains real and fake samples for training
+│   ├── real/
+│   └── fake/
+│
+├── test_videos/          # Videos to test the model against
+│
+├── detector.py           # Handles face detection and preprocessing
+├── ensemble.py           # Combines multiple model outputs
+├── train.py              # Training script for CNN + LSTM models
+├── streamlit_app.py      # Web interface for uploading and testing videos
+├── requirements.txt      # Python package dependencies
+├── README.md             # Project documentation
+└── __pycache__/          # Compiled Python files
+````
 
--Classification - Binary classification determining Real vs Fake
+---
 
--Ensemble Methods - Combining multiple models for improved accuracy
+## 🛠️ Setup Instructions
 
-<br>
+### 1. Clone the Repository
 
+```bash
+git clone https://github.com/your-username/Deepfake_model.git
+cd Deepfake_model
+```
 
-**Key Technical Components**
+### 2. Install Dependencies
 
-<br>
+```bash
+pip install -r requirements.txt
+```
 
-1. Face Detection & Preprocessing
-   
-Modern deepfake detection relies heavily on robust face detection. The most effective approaches use:
+---
 
--MTCNN (Multi-Task Cascaded Convolutional Networks): Provides high-accuracy face detection with landmarks
+## 🚀 Running the Project
 
--MediaPipe: Google's efficient face detection solution
+### 🧠 To Train the Model
 
--Face Alignment: Standardizing face orientation and size for consistent analysis
+Make sure the `dataset/real` and `dataset/fake` folders contain your training videos.
 
-<br>
+```bash
+python train.py
+```
 
-2. Feature Extraction Models
-   
-Research shows that different CNN architectures excel at different aspects:
+### 🎬 To Run the Streamlit App
 
--XceptionNet: Achieves 95-97% accuracy on benchmark datasets, particularly effective with depthwise separable convolutions
+```bash
+streamlit run streamlit_app.py
+```
 
--EfficientNet: Provides excellent efficiency-accuracy trade-offs, commonly used in production systems
+This will launch a browser interface to upload test videos and get real/fake predictions.
 
--ResNet architectures: Serve as reliable baselines and work well in ensemble methods
+---
 
-<br>
+## 📌 Key Components
 
-3. Temporal Analysis
-   
-Video-based deepfake detection requires analyzing temporal inconsistencies:
+| File               | Description                                                        |
+| ------------------ | ------------------------------------------------------------------ |
+| `train.py`         | Trains CNN and LSTM models using preprocessed face frames          |
+| `detector.py`      | Uses MTCNN or MediaPipe to detect and crop faces from video frames |
+| `ensemble.py`      | Combines predictions from multiple models using voting/averaging   |
+| `streamlit_app.py` | Streamlit frontend for uploading and testing videos                |
 
--LSTM Networks: Capture long-term dependencies in video sequences
+---
 
--RNN Variants: Process frame sequences to identify temporal artifacts
+## 📊 Evaluation Metrics
 
--CNN+LSTM Combinations: Extract spatial features with CNNs, then analyze temporal patterns with LSTMs
+* Accuracy
+* Precision / Recall / F1-Score
+* ROC-AUC
+* Frame-level and video-level inference
 
-<br>
+---
 
-4. Ensemble Methods
-   
-Research consistently shows that ensemble approaches achieve the highest accuracy:
+## 📦 Future Improvements
 
--Model Diversity: Combining different architectures (CNN, LSTM, Transformers)
+* Add real-time webcam-based detection
+* Integrate transformer-based models (e.g., ViViT, TimeSformer)
+* Model optimization for faster inference (e.g., TensorRT, ONNX export)
 
--Voting Strategies: Majority voting, weighted averaging, stacking
+---
 
--Cross-Dataset Generalization: Improved performance on unseen data
+## 📬 Contact
+
+For any inquiries or contributions, contact: **[your-email@example.com](mailto:your-email@example.com)**
+
+---
+
+## 📜 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+```
+
