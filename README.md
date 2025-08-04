@@ -116,5 +116,4 @@ For any inquiries or contributions, contact: **[your-email@example.com](mailto:y
 
 This project is licensed under the [MIT License](LICENSE).
 
-```
 
